@@ -33,21 +33,27 @@ class MainActivity : AppCompatActivity() {
         try {
             val result = evaluateExpression(currentInput.toString())
             display.text = result.toString()
-            currentInput.setLength(0) // Clear the input for the next calculation
-            currentInput.append(result) // Set the result as the new input
+            currentInput.setLength(0)
+            currentInput.append(result)
         } catch (e: Exception) {
             display.text = "Error"
-            currentInput.setLength(0) // Clear the input in case of an error
+            currentInput.setLength(0)
         }
     }
 
     fun onClearClick(view: View) {
         currentInput.setLength(0)
+        currentInput.setLength(0)
         display.text = "0"
 
     }
 
-// ... rest of your code
+    fun onBackspaceClick(view: View) {
+        if (currentInput.isNotEmpty()) {
+            currentInput.deleteCharAt(currentInput.length - 1)
+            display.text= currentInput.toString()
+        }
+    }
 
     private fun evaluateExpression(expression: String): Double {
         try {
